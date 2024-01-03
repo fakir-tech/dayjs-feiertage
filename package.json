@@ -2,14 +2,27 @@
   "name": "dayjs-feiertage",
   "version": "0.0.1",
   "description": "",
-  "main": "build/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dayjs": "^1.11.10",
     "feiertagejs": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "tsup": "^8.0.1",
+    "typescipt": "^1.0.0"
   }
 }

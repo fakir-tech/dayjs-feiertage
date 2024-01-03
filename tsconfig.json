@@ -2,6 +2,6 @@
   "compilerOptions": {
     "lib": ["dom", "es6", "dom.iterable", "scripthost"],
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   }
 }
