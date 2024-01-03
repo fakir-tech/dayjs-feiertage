@@ -1,0 +1,15 @@
+{
+  "name": "dayjs-feiertage",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "feiertagejs": "^1.4.0"
+  }
+}
