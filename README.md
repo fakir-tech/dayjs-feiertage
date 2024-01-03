@@ -11,20 +11,20 @@ This is a wrapperlib for [feiertage.js](https://github.com/sfakir/feiertagejs) f
 
 ## Quick Examples
 
-### ES Modules (Typescript/Javasript)
-
 ```javascript
 import dayjs from 'dayjs';
 import dayjsFeiertage from './src/dayjs-feiertage';
 
 dayjs.extend(dayjsFeiertage);
 
+// check if a day is a Holiday (in Germany)
 dayjs('2020-12-25').isHoliday('BUND') // true
 
 // check if a day is a specific holiday
 dayjs('2020-12-25').isSpecificHoliday( 'CHRISTIHIMMELFAHRT', 'ALL'); //false
 
- dayjs('2020-12-25').getHolidaysOfYear( 'ALL'); // returns list of Holiday, see next nty
+// get all holidays of a year
+dayjs('2020-12-25').getHolidaysOfYear( 'ALL'); // returns list of Holiday, see next nty
 ```
 
 One entry of the array contains:
@@ -50,24 +50,13 @@ One entry of the array contains:
 ]
 
 ```
-
-## API doc
-
-The full API doc can be found [here](docs.md).
-
 ## Feedback and Questions
 
 You have two options two give feedback or ask questions:
 
 - Comment the official release [post](https://fakir.tech/de/feiertage-js-deutsche-feiertage-fuer-node-js-und-browser-javascript/)
-- Open issues or pullrequests on [github](https://github.com/sfakir/feiertagejs)
+- Open issues or pullrequests on [github](https://github.com/fakir-tech/dayjs-feiertage)
 
-## Contributors
-
-Thank you for contributing:
-
-- thetric
-- SteveOswald
 
 ## Feedback
 
