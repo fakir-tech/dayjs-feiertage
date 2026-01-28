@@ -1,6 +1,12 @@
 # dayjs-feiertage
 
+[![npm version](https://img.shields.io/npm/v/dayjs-feiertage.svg)](https://www.npmjs.com/package/dayjs-feiertage)
+[![npm downloads](https://img.shields.io/npm/dm/dayjs-feiertage.svg)](https://www.npmjs.com/package/dayjs-feiertage)
+[![license](https://img.shields.io/npm/l/dayjs-feiertage.svg)](https://github.com/sfakir/dayjs-feiertage/blob/main/LICENSE)
+
 A dayjs plugin for German holidays (Feiertage) using [feiertagejs](https://github.com/sfakir/feiertagejs).
+
+**[View on npm](https://www.npmjs.com/package/dayjs-feiertage)**
 
 ## Installation
 
