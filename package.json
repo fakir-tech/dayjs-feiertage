@@ -1,28 +1,61 @@
 {
   "name": "dayjs-feiertage",
-  "version": "0.0.1",
-  "description": "",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "version": "0.1.0",
+  "description": "A dayjs plugin for German holidays (Feiertage) using feiertagejs",
+  "main": "./dist/dayjs-feiertage.js",
+  "module": "./dist/dayjs-feiertage.mjs",
+  "types": "./dist/dayjs-feiertage.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/dayjs-feiertage.d.mts",
+        "default": "./dist/dayjs-feiertage.mjs"
+      },
+      "require": {
+        "types": "./dist/dayjs-feiertage.d.ts",
+        "default": "./dist/dayjs-feiertage.js"
+      }
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsup",
-    "test": "jest"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "dayjs",
+    "plugin",
+    "feiertage",
+    "holidays",
+    "german",
+    "germany",
+    "feiertagejs"
+  ],
+  "author": "Simon Fakir",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sfakir/dayjs-feiertage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sfakir/dayjs-feiertage/issues"
+  },
+  "homepage": "https://github.com/sfakir/dayjs-feiertage#readme",
+  "peerDependencies": {
+    "dayjs": ">=1.11.0"
+  },
   "dependencies": {
-    "dayjs": "^1.11.10",
     "feiertagejs": "^1.4.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.11",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.1",
+    "dayjs": "^1.11.10",
     "tsup": "^8.0.1",
-    "typescipt": "^1.0.0"
+    "typescript": "^5.3.0",
+    "vitest": "^1.2.0"
   }
 }

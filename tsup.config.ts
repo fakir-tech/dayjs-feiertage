@@ -2,9 +2,11 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: ["src/dayjs-feiertage.ts"],
-  format: ["cjs", "esm"], // Build for commonJS and ESmodules
-  // dts: true, // Generate declaration file (.d.ts)
+  outDir: "dist",
+  format: ["cjs", "esm"],
+  dts: true,
   splitting: false,
   sourcemap: true,
   clean: true,
+  external: ["dayjs"],
 });

@@ -1,0 +1,49 @@
+# dayjs-feiertage Project Rules
+
+## Project Overview
+
+This is a dayjs plugin that wraps feiertagejs to provide German holiday functionality for dayjs.
+
+## Code Style
+
+- Use TypeScript strict mode
+- Use ESM imports/exports
+- Prefer `const` over `let`
+- Use explicit return types on exported functions
+- Use JSDoc comments for public API methods
+
+## Plugin Development
+
+- All instance methods should be added to `dayjsClass.prototype`
+- All static methods should be added to `dayjsFactory`
+- Type declarations must be in `declare module "dayjs"` block
+- Re-export types that consumers might need
+
+## Testing
+
+- Use Vitest for testing
+- Test files should be in `test/` directory with `.test.ts` extension
+- Each public method should have at least 3 tests:
+  - Happy path
+  - Edge case
+  - Error/negative case
+- Use descriptive test names that explain expected behavior
+
+## Build
+
+- Use tsup for building
+- Output both CJS and ESM formats
+- Generate declaration files (.d.ts)
+- Keep dayjs as external (peer dependency)
+
+## Commits
+
+- Use conventional commit format: `type(scope): message`
+- Types: feat, fix, docs, test, refactor, chore
+- Keep commits focused and atomic
+
+## Dependencies
+
+- dayjs is a peer dependency (don't bundle it)
+- feiertagejs is a runtime dependency
+- Keep devDependencies minimal
