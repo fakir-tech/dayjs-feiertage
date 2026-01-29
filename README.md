@@ -70,20 +70,24 @@ dayjs("2025-01-27").isSunOrHoliday(Regions.BUND); // false - Regular Monday
 
 #### `isSpecificHoliday(holidayName: HolidayType, region?: Region): boolean`
 
-Check if the date is a specific holiday. Region defaults to "ALL".
+Check if the date is a specific holiday. Region defaults to `Regions.ALL`.
 
 ```javascript
-dayjs("2025-05-29").isSpecificHoliday("CHRISTIHIMMELFAHRT"); // true
-dayjs("2025-12-25").isSpecificHoliday("ERSTERWEIHNACHTSFEIERTAG", "BUND"); // true
-dayjs("2025-10-03").isSpecificHoliday("DEUTSCHEEINHEIT"); // true
+import { Regions, HolidayTypes } from "dayjs-feiertage";
+
+dayjs("2025-05-29").isSpecificHoliday(HolidayTypes.CHRISTIHIMMELFAHRT); // true
+dayjs("2025-12-25").isSpecificHoliday(HolidayTypes.ERSTERWEIHNACHTSFEIERTAG, Regions.BUND); // true
+dayjs("2025-10-03").isSpecificHoliday(HolidayTypes.DEUTSCHEEINHEIT); // true
 ```
 
 #### `getHolidayByDate(region?: Region): Holiday | undefined`
 
-Get the holiday object for this date. Returns `undefined` if not a holiday. Region defaults to "ALL".
+Get the holiday object for this date. Returns `undefined` if not a holiday. Region defaults to `Regions.ALL`.
 
 ```javascript
-const holiday = dayjs("2025-12-25").getHolidayByDate("BUND");
+import { Regions } from "dayjs-feiertage";
+
+const holiday = dayjs("2025-12-25").getHolidayByDate(Regions.BUND);
 console.log(holiday?.name); // "ERSTERWEIHNACHTSFEIERTAG"
 console.log(holiday?.translate("de")); // "Erster Weihnachtsfeiertag"
 console.log(holiday?.dateString); // "2025-12-25"
@@ -94,7 +98,9 @@ console.log(holiday?.dateString); // "2025-12-25"
 Get all holidays for the year of this date in the specified region.
 
 ```javascript
-const holidays = dayjs("2025-01-01").getHolidaysOfYear("BUND");
+import { Regions } from "dayjs-feiertage";
+
+const holidays = dayjs("2025-01-01").getHolidaysOfYear(Regions.BUND);
 holidays.forEach((h) => {
   console.log(`${h.dateString}: ${h.translate("de")}`);
 });
@@ -107,10 +113,12 @@ holidays.forEach((h) => {
 Add custom translations for holiday names.
 
 ```javascript
+import { HolidayTypes } from "dayjs-feiertage";
+
 dayjs.addHolidayTranslation("en", {
-  NEUJAHRSTAG: "New Year's Day",
-  ERSTERWEIHNACHTSFEIERTAG: "Christmas Day",
-  CHRISTIHIMMELFAHRT: "Ascension Day",
+  [HolidayTypes.NEUJAHRSTAG]: "New Year's Day",
+  [HolidayTypes.ERSTERWEIHNACHTSFEIERTAG]: "Christmas Day",
+  [HolidayTypes.CHRISTIHIMMELFAHRT]: "Ascension Day",
 });
 ```
 
@@ -130,11 +138,13 @@ Get the currently set language.
 console.log(dayjs.getHolidayLanguage()); // "de"
 ```
 
-## Types
+## Types and Constants
+
+The plugin exports types (`Region`, `HolidayType`, `Holiday`) and typed constants (`Regions`, `HolidayTypes`) for type-safe usage. Prefer constants over string literals.
 
 ### Region
 
-German state codes and special regions:
+German state codes and special regions (use `Regions` constant, e.g. `Regions.BUND`, `Regions.BY`):
 
 | Code      | State/Region                  |
 | --------- | ----------------------------- |
@@ -160,7 +170,7 @@ German state codes and special regions:
 
 ### HolidayType
 
-Available holiday identifiers:
+Available holiday identifiers (use `HolidayTypes` constant, e.g. `HolidayTypes.CHRISTIHIMMELFAHRT`):
 
 - `NEUJAHRSTAG` - New Year's Day
 - `HEILIGEDREIKOENIGE` - Epiphany
