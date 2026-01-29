@@ -25,19 +25,19 @@ yarn add dayjs-feiertage dayjs
 
 ```javascript
 import dayjs from "dayjs";
-import dayjsFeiertage from "dayjs-feiertage";
+import dayjsFeiertage, { Regions } from "dayjs-feiertage";
 
 // Extend dayjs with the plugin
 dayjs.extend(dayjsFeiertage);
 
-// Check if a date is a holiday
-dayjs("2025-12-25").isHoliday("BUND"); // true
+// Check if a date is a holiday (use Regions constants for type safety)
+dayjs("2025-12-25").isHoliday(Regions.BUND); // true
 
 // Check if a date is a Sunday or holiday
-dayjs("2025-12-25").isSunOrHoliday("BUND"); // true
+dayjs("2025-12-25").isSunOrHoliday(Regions.BUND); // true
 
 // Get all holidays for a year
-dayjs("2025-01-01").getHolidaysOfYear("BY"); // Array of Holiday objects
+dayjs("2025-01-01").getHolidaysOfYear(Regions.BY); // Array of Holiday objects
 ```
 
 ## API Reference
@@ -49,9 +49,11 @@ dayjs("2025-01-01").getHolidaysOfYear("BY"); // Array of Holiday objects
 Check if the date is a holiday in the specified region.
 
 ```javascript
-dayjs("2025-12-25").isHoliday("BUND"); // true - Christmas
-dayjs("2025-01-06").isHoliday("BW"); // true - Heilige Drei Könige (Baden-Württemberg)
-dayjs("2025-01-06").isHoliday("NI"); // false - Not a holiday in Niedersachsen
+import { Regions } from "dayjs-feiertage";
+
+dayjs("2025-12-25").isHoliday(Regions.BUND); // true - Christmas
+dayjs("2025-01-06").isHoliday(Regions.BW); // true - Heilige Drei Könige (Baden-Württemberg)
+dayjs("2025-01-06").isHoliday(Regions.NI); // false - Not a holiday in Niedersachsen
 ```
 
 #### `isSunOrHoliday(region: Region): boolean`
@@ -59,9 +61,11 @@ dayjs("2025-01-06").isHoliday("NI"); // false - Not a holiday in Niedersachsen
 Check if the date is a Sunday or a holiday in the specified region.
 
 ```javascript
-dayjs("2025-01-26").isSunOrHoliday("BUND"); // true - Sunday
-dayjs("2025-12-25").isSunOrHoliday("BUND"); // true - Holiday
-dayjs("2025-01-27").isSunOrHoliday("BUND"); // false - Regular Monday
+import { Regions } from "dayjs-feiertage";
+
+dayjs("2025-01-26").isSunOrHoliday(Regions.BUND); // true - Sunday
+dayjs("2025-12-25").isSunOrHoliday(Regions.BUND); // true - Holiday
+dayjs("2025-01-27").isSunOrHoliday(Regions.BUND); // false - Regular Monday
 ```
 
 #### `isSpecificHoliday(holidayName: HolidayType, region?: Region): boolean`
