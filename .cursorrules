@@ -11,6 +11,7 @@ This is a dayjs plugin that wraps feiertagejs to provide German holiday function
 - Prefer `const` over `let`
 - Use explicit return types on exported functions
 - Use JSDoc comments for public API methods
+- **Prefer strong types over string constants**: Use typed constants (e.g. `Regions.BUND`, `HolidayTypes.CHRISTIHIMMELFAHRT`) and proper types (`Region`, `HolidayType`) instead of raw string literals when both are available
 
 ## Plugin Development
 

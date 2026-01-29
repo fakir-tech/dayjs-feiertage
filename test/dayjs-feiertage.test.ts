@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterEach } from "vitest";
 import dayjs from "dayjs";
-import dayjsFeiertage from "../src/dayjs-feiertage";
+import dayjsFeiertage, { Regions, HolidayTypes } from "../src/dayjs-feiertage";
 
 beforeAll(() => {
   dayjs.extend(dayjsFeiertage);
@@ -36,6 +36,11 @@ describe("dayjs-feiertage plugin", () => {
 
     it("works with ALL region", () => {
       expect(dayjs("2025-12-25").isHoliday("ALL")).toBe(true);
+    });
+
+    it("works with Regions constants", () => {
+      expect(dayjs("2025-12-25").isHoliday(Regions.BUND)).toBe(true);
+      expect(dayjs("2025-12-25").isHoliday(Regions.ALL)).toBe(true);
     });
   });
 
@@ -87,6 +92,15 @@ describe("dayjs-feiertage plugin", () => {
       expect(dayjs("2025-10-03").isSpecificHoliday("DEUTSCHEEINHEIT")).toBe(
         true
       );
+    });
+
+    it("works with HolidayTypes and Regions constants", () => {
+      expect(
+        dayjs("2025-05-29").isSpecificHoliday(
+          HolidayTypes.CHRISTIHIMMELFAHRT,
+          Regions.ALL
+        )
+      ).toBe(true);
     });
   });
 

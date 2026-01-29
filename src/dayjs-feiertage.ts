@@ -16,6 +16,50 @@ import {
 // Re-export types for consumers
 export type { Holiday, HolidayType, Region } from "feiertagejs";
 
+// Region constants for type-safe usage (instead of string literals)
+export const Regions = {
+  BW: "BW",
+  BY: "BY",
+  BE: "BE",
+  BB: "BB",
+  HB: "HB",
+  HE: "HE",
+  HH: "HH",
+  MV: "MV",
+  NI: "NI",
+  NW: "NW",
+  RP: "RP",
+  SL: "SL",
+  SN: "SN",
+  ST: "ST",
+  SH: "SH",
+  TH: "TH",
+  BUND: "BUND",
+  AUGSBURG: "AUGSBURG",
+  ALL: "ALL",
+} as const satisfies Record<string, Region>;
+
+// Holiday type constants for type-safe usage (instead of string literals)
+export const HolidayTypes = {
+  NEUJAHRSTAG: "NEUJAHRSTAG",
+  HEILIGEDREIKOENIGE: "HEILIGEDREIKOENIGE",
+  KARFREITAG: "KARFREITAG",
+  OSTERSONNTAG: "OSTERSONNTAG",
+  OSTERMONTAG: "OSTERMONTAG",
+  TAG_DER_ARBEIT: "TAG_DER_ARBEIT",
+  CHRISTIHIMMELFAHRT: "CHRISTIHIMMELFAHRT",
+  MARIAHIMMELFAHRT: "MARIAHIMMELFAHRT",
+  PFINGSTSONNTAG: "PFINGSTSONNTAG",
+  PFINGSTMONTAG: "PFINGSTMONTAG",
+  FRONLEICHNAM: "FRONLEICHNAM",
+  DEUTSCHEEINHEIT: "DEUTSCHEEINHEIT",
+  REFORMATIONSTAG: "REFORMATIONSTAG",
+  ALLERHEILIGEN: "ALLERHEILIGEN",
+  BUBETAG: "BUBETAG",
+  ERSTERWEIHNACHTSFEIERTAG: "ERSTERWEIHNACHTSFEIERTAG",
+  ZWEITERWEIHNACHTSFEIERTAG: "ZWEITERWEIHNACHTSFEIERTAG",
+} as const satisfies Record<string, HolidayType>;
+
 // TranslationTable type (partial record of HolidayType to string)
 export type TranslationTable = Partial<Record<HolidayType, string>>;
 
@@ -24,32 +68,32 @@ declare module "dayjs" {
   interface Dayjs {
     /**
      * Check if the date is a holiday in the specified region
-     * @param region - German state code (e.g., 'BY', 'NW') or 'BUND' or 'ALL'
+     * @param region - Use {@link Regions} constants (e.g. Regions.BY, Regions.BUND)
      */
     isHoliday(region: Region): boolean;
 
     /**
      * Check if the date is a Sunday or a holiday in the specified region
-     * @param region - German state code (e.g., 'BY', 'NW') or 'BUND' or 'ALL'
+     * @param region - Use {@link Regions} constants (e.g. Regions.BY, Regions.BUND)
      */
     isSunOrHoliday(region: Region): boolean;
 
     /**
      * Check if the date is a specific holiday
-     * @param holidayName - The holiday type (e.g., 'CHRISTIHIMMELFAHRT')
-     * @param region - German state code (e.g., 'BY', 'NW') or 'BUND' or 'ALL'
+     * @param holidayName - Use {@link HolidayTypes} constants (e.g. HolidayTypes.CHRISTIHIMMELFAHRT)
+     * @param region - Use {@link Regions} constants; defaults to Regions.ALL
      */
     isSpecificHoliday(holidayName: HolidayType, region?: Region): boolean;
 
     /**
      * Get the holiday object for this date if it is a holiday
-     * @param region - German state code (e.g., 'BY', 'NW') or 'BUND' or 'ALL'
+     * @param region - Use {@link Regions} constants; defaults to Regions.ALL
      */
     getHolidayByDate(region?: Region): Holiday | undefined;
 
     /**
      * Get all holidays for the year of this date
-     * @param region - German state code (e.g., 'BY', 'NW') or 'BUND' or 'ALL'
+     * @param region - Use {@link Regions} constants (e.g. Regions.BUND)
      */
     getHolidaysOfYear(region: Region): Holiday[];
   }
@@ -95,13 +139,13 @@ const dayjsFeiertage: PluginFunc = (_option, dayjsClass, dayjsFactory) => {
 
   dayjsClass.prototype.isSpecificHoliday = function (
     holidayName: HolidayType,
-    region: Region = "ALL"
+    region: Region = Regions.ALL
   ): boolean {
     return isSpecificHoliday(this.toDate(), holidayName, region);
   };
 
   dayjsClass.prototype.getHolidayByDate = function (
-    region: Region = "ALL"
+    region: Region = Regions.ALL
   ): Holiday | undefined {
     return getHolidayByDate(this.toDate(), region) || undefined;
   };
